@@ -1,4 +1,4 @@
-# 🎓 Computer Science Engineering Degree Projects
+# 🎓 Computer Science Engineering Projects
 
 Projects developed during my **Bachelor’s degree in Computer Science Engineering** at the **University of Évora (Portugal)**.
 
@@ -6,6 +6,12 @@ Projects developed during my **Bachelor’s degree in Computer Science Engineeri
 [Computer Science Engineering – University of Évora](https://www.uevora.pt/estudar/cursos/licenciaturas?cod=9119)
 
 ---
+
+
+## 📁 Organization
+
+Projects are organized by **academic year and semester**, and grouped by **course**.
+
 
 ---
 
@@ -75,7 +81,9 @@ Each project may contain its own `README.md` with instructions on how to compile
 
 ## 📌 Notes
 
-These projects were developed for academic purposes.
+These projects were developed for academic purposes as part of coursework and practical assignments.
+
+Some parts of the projects (such as comments, reports, or documentation) may be written in **Portuguese**, as it is mandatory for course submissions.
 
 ---
 
