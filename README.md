@@ -1,11 +1,11 @@
-# 🎓 Computer Sciences Engineering Degree Projects – University of Évora
+# 🎓 Computer Science Engineering Degree Projects
 
-This repository contains projects and assignments developed during my Computer Science degree at the **University of Évora**.
+Projects developed during my **Bachelor’s degree in Computer Science Engineering** at the **University of Évora (Portugal)**.
 
 🔗 Degree program:  
-https://www.uevora.pt/estudar/cursos/licenciaturas?cod=9119
+[Computer Science Engineering – University of Évora](https://www.uevora.pt/estudar/cursos/licenciaturas?cod=9119)
 
-Each folder corresponds to a course and includes the projects completed for that subject.
+---
 
 ---
 
