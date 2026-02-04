@@ -2,6 +2,9 @@
 
 This repository contains projects and assignments developed during my Computer Science degree at the **University of Évora**.
 
+🔗 Degree program:  
+https://www.uevora.pt/estudar/cursos/licenciaturas?cod=9119
+
 Each folder corresponds to a course and includes the projects completed for that subject.
 
 ---
