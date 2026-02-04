@@ -62,7 +62,7 @@ Projects are organized by **academic year and semester**, and grouped by **cours
 ## 🚀 How to Use
 
 Navigate to a course folder to see the corresponding projects.  
-Each project may contain its own `README.md` with instructions on how to compile or run the code.
+Each project contains its own `README.md` with instructions on how to compile or run the code.
 
 ## 📌 Notes
 
