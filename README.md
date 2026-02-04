@@ -1,7 +1,4 @@
-# CS-Degree-projects
-Projects developed during my Computer Sciences Engineering degree, organized by courses.
-
-# 🎓 Computer Science Degree Projects – University of Évora
+# 🎓 Computer Sciences Engineering Degree Projects – University of Évora
 
 This repository contains projects and assignments developed during my Computer Science degree at the **University of Évora**.
 
