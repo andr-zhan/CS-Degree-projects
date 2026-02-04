@@ -1,4 +1,28 @@
-# Ignore macOS system files
+# ===== Java =====
+*.class
+*.jar
+bin/
+target/
+
+# ===== JavaScript =====
+*.log
+
+# ===== OCaml =====
+*.cmo
+*.cmi
+*.cmx
+*.native
+*.byte
+_build/
+
+# ===== Logs & temp files =====
+*.tmp
+*.swp
+
+# ===== IDEs / Editors =====
+.vscode/
+.idea/
+
+# ===== OS files =====
 .DS_Store
-# Discard all target directories
-**/target/
+Thumbs.db
