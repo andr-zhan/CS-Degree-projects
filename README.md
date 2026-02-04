@@ -56,7 +56,7 @@ Ongoing. Projects will be added as they are completed.
 - OCaml  
 - SQL  
 
-## ▶️ How to Use
+## 🚀 How to Use
 
 Navigate to a course folder to see the corresponding projects.  
 Each project may contain its own `README.md` with instructions on how to compile or run the code.
