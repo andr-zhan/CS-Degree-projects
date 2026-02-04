@@ -43,6 +43,9 @@ Projects are organized by **academic year and semester**, and grouped by **cours
 ### 🔵 3rd Year – 6th Semester
 Ongoing. Projects will be added as they are completed.
 
+
+---
+
 ## 🛠️ Languages Used
 
 - C  
