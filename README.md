@@ -14,37 +14,37 @@ Projects are organized by **academic year and semester**, and grouped by **cours
 ## 📂 Projects
 
 ### 📘 1st Year
-#### 1st Semester
+**1st Semester**
 - [Digital Systems](./Digital-Systems)
 - [Human-Computer Interaction (HCI)](./Human-Computer-Interaction)
 - [Programming I](./Programming-I)
 
-#### 2nd Semester
+**2nd Semester**
 - [Computer Architecture I](./Computer-Architecture-I)
 - [Data Structures and Algorithms I](./Data-Structures-and-Algorithms-I)
 
 ### 📙 2nd Year
-#### 3rd Semester
+**3rd Semester**
 - [Computer Graphics](./Computer-Graphics)
 - [Databases](./Databases)
 - [Programming II](./Programming-II)
 
-#### 4th Semester
+**4th Semester**
 - [Computer Networks](./Computer-Networks)
 - [Data Structures and Algorithms II](./Data-Structures-and-Algorithms-II)
 - [Introduction to Research](./Introduction-to-Research)
 - [Operating Systems](./Operating-Systems)
 
 ### 📕 3rd Year
-#### 5th Semester
+**5th Semester**
 - [Distributed Systems](./Distributed-Systems)
 - [Machine Learning](./Machine-Learning)
 - [Methods and Software Development](./Methods-and-Software-Development)
 - [Programming III](./Programming-III)
 - [Web Technologies](./Web-Technologies)
 
-#### 6th Semester
-Ongoing. Projects will be added as they are completed.
+**6th Semester**
+> 🚧 Ongoing — projects will be added as they are completed.
 
 
 ---
