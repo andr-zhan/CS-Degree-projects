@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            X3D
+        </title>
+        <!-- Bibliotecas -->
+        <script type='application/javascript' src='lib/x3dom/x3dom-full.js'>
+        </script>
+        <link rel='stylesheet' type='text/css' href='lib/x3dom/x3dom.css' />
+    </head>
+    
+    <body>
+        <x3d width="1060px" height="530px">
+            <scene>
+                
+                <!-- Luz -->
+                <PointLight radius="500" intensity="1" location="0 200 100" color="1 0.9 0.7"
+                shadowIntensity="0.5">
+                </PointLight>
+
+                <!-- Ponto de Vista -->
+                <ViewPoint position="0 3 8" orientation="0 0 0 1">
+                </ViewPoint>
+
+                <!-- Fundo -->
+                <Background DEF='Noite' skyAngle='0.8,
+                1.3,
+                1.4,
+                1.5708' skyColor='0.02 0.02 0.1,
+                0.05 0.05 0.2,
+                0.1 0.1 0.3,
+                0.15 0.15 0.4,
+                0.2 0.2 0.5' groundAngle='0.659972,
+                1.2,
+                1.39912,
+                1.5708' groundColor='0.01 0.01 0.05,
+                0.02 0.02 0.1,
+                0.03 0.03 0.15,
+                0.04 0.04 0.2,
+                0.05 0.05 0.25'>
+                </Background>
+
+                <!-- Carro -->
+                <Transform DEF="carro" translation="0 -1 -10">
+                    <!-- Corpo do Carro -->
+                    <Transform>
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.1 2 5">
+                                </Material>
+                            </Appearance>
+                            <Box size="2 0.5 1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Rodas -->
+                    <Transform translation="-0.8 -0.25 -0.6" rotation="1 0 0 1.570796">
+                        <!-- Roda 1 -->
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0 0 0">
+                                </Material>
+                            </Appearance>
+                            <Cylinder radius="0.3" height="0.1" solid="true" axis="0 0 1">
+                            </Cylinder>
+                        </Shape>
+                    </Transform>
+                        <!-- Roda 2 -->
+                    <Transform translation="0.8 -0.25 -0.6" rotation="1 0 0 1.570796">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0 0 0">
+                                </Material>
+                            </Appearance>
+                            <Cylinder radius="0.3" height="0.1" solid="true" axis="0 0 1">
+                            </Cylinder>
+                        </Shape>
+                    </Transform>
+                        <!-- Roda 3 -->
+                    <Transform translation="-0.8 -0.25 0.6" rotation="1 0 0 1.570796">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0 0 0">
+                                </Material>
+                            </Appearance>
+                            <Cylinder radius="0.3" height="0.1" solid="true" axis="0 0 1">
+                            </Cylinder>
+                        </Shape>
+                    </Transform>
+                        <!-- Roda 4 -->
+                    <Transform translation="0.8 -0.25 0.6" rotation="1 0 0 1.570796">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0 0 0">
+                                </Material>
+                            </Appearance>
+                            <Cylinder radius="0.3" height="0.1" solid="true" axis="0 0 1">
+                            </Cylinder>
+                        </Shape>
+                    </Transform>
+                </Transform>
+
+                <!-- Ponte -->
+                <Transform DEF="ponte">
+                    <!-- Plataforma da Ponte -->
+                    <Transform translation="0 -1 -10">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0 0 0" shininess="0.1" specularColor="0.1 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="40 0.5 4">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Torre 1 -->
+                    <Transform translation="-4.5 -2 -7.1">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.5 15 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="-4.5 5.5 -7.1">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.1 0.5 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Torre 2 -->
+                    <Transform translation="-4.5 -2 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.5 15 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="-4.5 5.5 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.1 0.5 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Torre 3 -->
+                    <Transform translation="5 -2 -7.1">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.5 15 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="5 5.5 -7.1">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.1 0.5 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Torre 4 -->
+                    <Transform translation="5 -2 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.5 15 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="5 5.5 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="0.1 0.5 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Ponte Torre -->
+                    <Transform translation="0.3 5 -10">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.4 0.4 0.4" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="10.3 0.5 7">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Ponte Linhas -->
+                    <Transform translation="-11.2 2.5 -11.5" rotation="0 0 1 35">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.3" specularColor="0.2 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="15 0.1 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="-11.2 2.5 -7.1" rotation="0 0 1 35">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.3" specularColor="0.2 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="15 0.1 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="11.7 2.5 -11.5" rotation="0 0 1 -35">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.3" specularColor="0.2 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="15 0.1 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <Transform translation="11.7 2.5 -7.1" rotation="0 0 1 -35">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.3" specularColor="0.2 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="15 0.1 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Ponte Linhas superiores -->
+                    <Transform translation="0.2 6.5 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.3" specularColor="0.2 0.1 0.1">
+                                </Material>
+                            </Appearance>
+                            <Box size="12.3 0.1 0.1">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Barreira1 -->
+                    <Transform translation="-3.5 -0.6 -11.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="40 0.3 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                    <!-- Barreira2 -->
+                    <Transform translation="-3.5 -0.5 -7.5">
+                        <Shape>
+                            <Appearance>
+                                <Material diffuseColor="0.5 0 0" shininess="0.1" specularColor="0.2 0.2 0.2">
+                                </Material>
+                            </Appearance>
+                            <Box size="40 0.3 0.3">
+                            </Box>
+                        </Shape>
+                    </Transform>
+                </Transform>
+                
+                <!-- Lua -->
+                <Transform DEF="lua" translation="0 -15 0">
+                    <Shape>
+                        <Appearance>
+                            <Material diffuseColor="0.4 0.4 0.4"></Material>
+            
+                            <!-- Textura-->
+                             <ImageTexture url="T2.jpg"/>
+
+                        </Appearance>
+                        <Sphere radius="2"></Sphere>
+                    </Shape>
+                </Transform>
+
+                <Scene>
+                    <!-- Estrelas Modelos -->
+                    <Transform DEF="estrelas">
+                      <Transform translation="-30 19 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material DEF="materialEstrela" diffuseColor="1 1 1" emissiveColor="0.9 0.9 0.9"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-35 13 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.4"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-25 25 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.6"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-28 7 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.3"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-22 15 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.4"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="35 10 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-15 18 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.7"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-10 12 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.4"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="-5 20 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.6"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="0 14 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="5 9 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.3"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="10 16 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="15 8 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.7"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="33 20 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.6"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="25 15 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform translation="20 18 -40">
+                        <Shape>
+                          <Appearance>
+                            <Material USE="materialEstrela"></Material>
+                          </Appearance>
+                          <Sphere radius="0.6"></Sphere>
+                        </Shape>
+                      </Transform>
+                    </Transform>
+                  
+                    <Transform translation="-13 7 -40">
+                      <Shape>
+                        <Appearance>
+                          <Material USE="materialEstrela"></Material>
+                        </Appearance>
+                        <Sphere radius="0.5"></Sphere>
+                      </Shape>
+                    </Transform>
+                  
+                    <!-- Modelo de Estrelas Cadentes Modelos -->
+                    <Transform DEF="modeloEstrelasCadentes">
+                      <Transform DEF="estrelaCadente1">
+                        <Shape>
+                          <Appearance>
+                            <Material diffuseColor="1 1 0" emissiveColor="1 1 0"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform DEF="estrelaCadente2">
+                        <Shape>
+                          <Appearance>
+                            <Material diffuseColor="0.8 0.8 1" emissiveColor="0.8 0.8 1"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                      <Transform DEF="estrelaCadente3">
+                        <Shape>
+                          <Appearance>
+                            <Material diffuseColor="1 0.5 0" emissiveColor="1 0.5 0"></Material>
+                          </Appearance>
+                          <Sphere radius="0.5"></Sphere>
+                        </Shape>
+                      </Transform>
+                    </Transform>
+                  </Scene>
+
+                <!-- Animações das Estrelas Cadentes -->
+                <Transform DEF="animacoesEstrelasCadentes">
+                    <PositionInterpolator DEF="caminhoEstrelaCadente1" key="0 0.5 1" keyValue="-50 25 -40 -20 15 -40 10 5 -40">
+                    </PositionInterpolator>
+                    <TimeSensor DEF="tempoEstrelaCadente1" cycleInterval="5" loop="true">
+                    </TimeSensor>
+                    <ROUTE fromNode="tempoEstrelaCadente1" fromField="fraction_changed" toNode="caminhoEstrelaCadente1"
+                    toField="set_fraction">
+                    </ROUTE>
+                    <ROUTE fromNode="caminhoEstrelaCadente1" fromField="value_changed" toNode="estrelaCadente1"
+                    toField="set_translation">
+                    </ROUTE>
+                    
+                    <PositionInterpolator DEF="caminhoEstrelaCadente2" key="0 0.5 1" keyValue="40 30 -40 10 20 -40 -20 10 -40">
+                    </PositionInterpolator>
+                    <TimeSensor DEF="tempoEstrelaCadente2" cycleInterval="6" loop="true">
+                    </TimeSensor>
+                    <ROUTE fromNode="tempoEstrelaCadente2" fromField="fraction_changed" toNode="caminhoEstrelaCadente2"
+                    toField="set_fraction">
+                    </ROUTE>
+                    <ROUTE fromNode="caminhoEstrelaCadente2" fromField="value_changed" toNode="estrelaCadente2"
+                    toField="set_translation">
+                    </ROUTE>
+                    
+                    <PositionInterpolator DEF="caminhoEstrelaCadente3" key="0 0.5 1" keyValue="-30 35 -40 0 25 -40 30 15 -40">
+                    </PositionInterpolator>
+                    <TimeSensor DEF="tempoEstrelaCadente3" cycleInterval="4" loop="true">
+                    </TimeSensor>
+                    <ROUTE fromNode="tempoEstrelaCadente3" fromField="fraction_changed" toNode="caminhoEstrelaCadente3"
+                    toField="set_fraction">
+                    </ROUTE>
+                    <ROUTE fromNode="caminhoEstrelaCadente3" fromField="value_changed" toNode="estrelaCadente3"
+                    toField="set_translation">
+                    </ROUTE>
+                </Transform>
+                
+                <!-- Animação da Lua -->
+                <TimeSensor DEF="temporizadorLua" cycleInterval="10" loop="true">
+                </TimeSensor>
+                <PositionInterpolator DEF="caminhoLua" key="0 0.5 1" keyValue="-15 9 -15  0 10 -15  15 9 -15">
+                </PositionInterpolator>
+                <ROUTE fromNode="temporizadorLua" fromField="fraction_changed" toNode="caminhoLua"
+                toField="set_fraction">
+                </ROUTE>
+                <ROUTE fromNode="caminhoLua" fromField="value_changed" toNode="lua" toField="translation">
+                </ROUTE>
+               
+                <!-- Animação de Piscar das Estrelas -->
+                <TimeSensor DEF="temporizadorEstrela" cycleInterval="1" loop="true">
+                </TimeSensor>
+                <ColorInterpolator DEF="piscarEstrela" key="0 0.5 1" keyValue="1 1 0  0 0 0  1 1 0">
+                </ColorInterpolator>
+                <ROUTE fromNode="temporizadorEstrela" fromField="fraction_changed" toNode="piscarEstrela"
+                toField="set_fraction">
+                </ROUTE>
+                <ROUTE fromNode="piscarEstrela" fromField="value_changed" toNode="materialEstrela"
+                toField="emissiveColor">
+                </ROUTE>
+                
+                <!-- Animação do Carro -->
+                <TimeSensor DEF="temporizadorCarro" cycleInterval="5" loop="true">
+                </TimeSensor>
+                <PositionInterpolator DEF="caminhoCarro" key="0 0.5 1" keyValue="-15 0.25 -10  0 0 -10  15 0 -10">
+                </PositionInterpolator>
+                <ROUTE fromNode="temporizadorCarro" fromField="fraction_changed" toNode="caminhoCarro"
+                toField="set_fraction">
+                </ROUTE>
+                <ROUTE fromNode="caminhoCarro" fromField="value_changed" toNode="carro"
+                toField="translation">
+                </ROUTE>
+            </scene>
+        </x3d>
+    </body>
+</html>

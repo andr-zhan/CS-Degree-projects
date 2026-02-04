@@ -1,0 +1,53 @@
+<div th:fragment="content">
+  <!-- Fragmento: Página inicial da aplicação RoomRent. 
+       Exibe últimas ofertas/procuras. -->
+  
+  <!-- Destaque principal -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2>Encontre o seu espaço ideal na RoomRent</h2>
+      <p class="hero-subtitle">A plataforma que conecta proprietários e inquilinos</p>
+      <!-- Botão: link para listagem dos anúncios. -->
+      <a href="/ads" class="btn-primary">🔍 Procurar Anúncios</a>
+    </div>
+  </section>
+
+  <!-- Últimas Ofertas e Procuras: cada coluna itera sobre uma coleção de anúncios -->
+  <section class="ads-showcase">
+    <div class="ads-column">
+      <h2 class="section-title">Últimas Ofertas</h2>
+      <div class="ads-grid">
+        <!-- Iteração sobre `latestOffers.content` (Page.content). -->
+        <div class="ad-card" th:each="ad : ${latestOffers.content}">
+          <!-- Ad card: mostrar apenas dados públicos e curtos para resumir o anúncio -->
+          <div class="ad-card-body">
+            <h3 class="ad-title" th:text="${ad.advertiserName}"></h3>
+            <p class="ad-location" th:text="${ad.accommodationType} + ' - ' + ${ad.zone}"></p>
+            <p class="ad-price"><span th:text="${ad.price}"></span> €/mês</p>
+          </div>
+          <div class="ad-card-footer">
+            <!-- Link para detalhes do anúncio; usa `ad.id` no URL. 
+             Controller valida visibilidade do anúncio quando servir /ads/{id}. -->
+            <a th:href="@{'/ads/' + ${ad.id}}" class="btn-details">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="ads-column">
+      <h2 class="section-title">Últimas Procuras</h2>
+      <div class="ads-grid">
+        <!-- Mesmo padrão para as procuras. -->
+        <div class="ad-card" th:each="ad : ${latestSearches.content}">
+          <div class="ad-card-body">
+            <h3 class="ad-title" th:text="${ad.advertiserName}"></h3>
+            <p class="ad-location" th:text="${ad.accommodationType} + ' - ' + ${ad.zone}"></p>
+          </div>
+          <div class="ad-card-footer">
+            <a th:href="@{'/ads/' + ${ad.id}}" class="btn-details">Ver Detalhes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

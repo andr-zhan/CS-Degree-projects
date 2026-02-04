@@ -1,0 +1,49 @@
+<div th:fragment="content" class="messages-page">
+  <!-- Fragmento: página de mensagens associadas a um anúncio. 
+   É acessível apenas pelo proprietário do anúncio. -->
+  <h2>Mensagens do seu anúncio</h2>
+
+  <!-- Resumo do anúncio: informações básicas para o contexto das mensagens. -->
+  <div class="card ad-summary">
+    <div class="summary-row">
+      <span class="label">Código:</span>
+      <span class="value" th:text="${ad.code}"></span>
+    </div>
+    <div class="summary-row">
+      <span class="label">Tipo:</span>
+      <span class="value" th:text="${ad.type}"></span>
+    </div>
+    <div class="summary-row">
+      <span class="label">Zona:</span>
+      <span class="value" th:text="${ad.zone}"></span>
+    </div>
+    <div class="summary-row">
+      <span class="label">Estado:</span>
+      <span class="value">
+        <span class="badge"
+              th:classappend="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'badge-active' : 'badge-inactive'"
+              th:text="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'Ativo' : 'Inativo'"></span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Caso não existam mensagens: mostra uma nota informativa. -->
+  <div class="card messages-card" th:if="${#lists.isEmpty(messages)}">
+    <p class="muted">Ainda não existem mensagens para este anúncio.</p>
+  </div>
+
+  <!-- Lista de mensagens: iteramos `messages`. -->
+  <div class="card messages-card" th:unless="${#lists.isEmpty(messages)}">
+    <div class="message-list">
+      <div class="message-item" th:each="m : ${messages}">
+        <!-- Meta: nome do remetente e timestamp (formatado). -->
+        <div class="message-meta">
+          <span class="from" th:text="${m.fromUser.username}"></span>
+          <span class="time" th:text="${#temporals.format(m.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+        </div>
+        <!-- Conteúdo -->
+        <div class="message-content" th:text="${m.content}"></div>
+      </div>
+    </div>
+  </div>
+</div>

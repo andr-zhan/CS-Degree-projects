@@ -1,0 +1,64 @@
+<div th:fragment="content" class="ads-list-page">
+  <!-- Fragmento: página de listagem de anúncios. Usa paginação do servidor (Page<Ad> em `ads`). -->
+  <!-- Nota: `ads.totalElements` provém do Page. -->
+  <!-- Cabeçalho da listagem -->
+  <div class="list-header">
+    <h2>Anúncios</h2>
+    <span class="muted" th:text="${'Total: ' + ads.totalElements}"></span>
+  </div>
+
+  <!-- Filtros -->
+  <!-- Filtros via query params (type, zone, name). 'type' usa enums do domínio via Thymeleaf (T(...)). -->
+  <form method="get" action="/ads" class="filters-bar">
+    <div class="filters-row">
+      <div class="filter">
+        <label>Tipo</label>
+        <select name="type">
+          <option value="" th:selected="${type == null}">Todos</option>
+          <option th:value="${T(roomrent.model.Ad.AdType).OFERTA}" th:selected="${type?.name() == 'OFERTA'}">Ofertas</option>
+          <option th:value="${T(roomrent.model.Ad.AdType).PROCURA}" th:selected="${type?.name() == 'PROCURA'}">Procura</option>
+        </select>
+      </div>
+        <div class="filter">
+          <label>Zona</label>
+          <input name="zone" type="text" th:value="${zone}" placeholder="Ex.: Évora">
+        </div>
+        <div class="filter">
+          <label>Anunciante</label>
+          <input name="name" type="text" th:value="${name}" placeholder="Nome do anunciante">
+        </div>
+      <div class="filter actions">
+        <button type="submit" class="btn-primary">Pesquisar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Grelha de anúncios -->
+  <!-- Itera `ads.content` (Page.content). -->
+  <div class="ads-grid-list">
+    <div class="ad-card" th:each="ad : ${ads.content}">
+      <div class="ad-card-body">
+        <div class="ad-pill-row">
+          <span class="chip chip-strong" th:text="${ad.type}"></span>
+          <span class="chip" th:text="${ad.accommodationType}"></span>
+          <span class="chip" th:text="${ad.zone}"></span>
+        </div>
+        <h3 class="ad-title" th:text="${ad.advertiserName}"></h3>
+        <p class="ad-location" th:if="${ad.price != null}"><span class="ad-price" th:text="${ad.price}"></span> €/mês</p>
+      </div>
+      <div class="ad-card-footer">
+        <a th:href="@{'/ads/' + ${ad.id}}" class="btn-details">Ver Detalhes</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paginação -->
+    <!-- Paginação server-side: usa #numbers.sequence para gerar páginas. -->
+    <div class="pagination" th:if="${ads.totalPages > 1}">
+    <a class="page-link"
+       th:each="p : ${#numbers.sequence(0, ads.totalPages-1)}"
+      th:classappend="${p == ads.number} ? 'active' : ''"
+      th:href="@{/ads(page=${p}, type=${type}, zone=${zone}, name=${name})}"
+       th:text="${p+1}"></a>
+  </div>
+</div>

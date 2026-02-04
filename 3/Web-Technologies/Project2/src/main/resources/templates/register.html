@@ -1,0 +1,30 @@
+<div th:fragment="content" class="login-page">
+  <!-- Fragmento de registo -->
+  <div class="card login-card">
+    <h2>Registo</h2>
+
+    <!-- Mensagem de erro geral retornada pelo controller -->
+    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+    <!-- Formulário de registo: usa `th:object` para binding e `th:field` para inputs -->
+    <form method="post" th:action="@{/register}" th:object="${registerForm}">
+      <!-- Token CSRF -->
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+      <label for="username">Username</label>
+      <input id="username" th:field="*{username}" type="text" required minlength="3" maxlength="50">
+
+      <label for="email">E-mail</label>
+      <input id="email" th:field="*{email}" type="email" required>
+
+      <label for="password">Password</label>
+      <input id="password" th:field="*{password}" type="password" required minlength="8">
+
+      <button type="submit" class="btn-primary">Registar</button>
+    </form>
+
+    <!-- Nota de fluxo: após o registo, o usuário aguarda aprovação do administrador. -->
+    <p class="muted" style="margin-top: 0.5rem; font-size: 0.9rem;">Após registo, aguarde aprovação do administrador.</p>
+    <p class="register-hint">Já tens conta? <a href="/login">Entrar</a></p>
+  </div>
+</div>

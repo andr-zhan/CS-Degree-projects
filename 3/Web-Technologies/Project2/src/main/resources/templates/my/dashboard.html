@@ -1,0 +1,76 @@
+<div th:fragment="content" class="my-dashboard">
+  <!-- Fragmento: Área Pessoal
+       O acesso a esta área é controlado no controller (admins bloqueados).
+  -->
+  <h2>Área Pessoal</h2>
+
+  <!-- Informação do Utilizador -->
+  <!-- Cartão com dados não sensíveis do utilizador (username, id). -->
+  <div class="card user-info-card">
+    <h3>Informação do Utilizador</h3>
+    <div class="info-row">
+      <span class="label">Username:</span>
+      <span class="value" th:text="${user.username}"></span>
+    </div>
+    <div class="info-row">
+      <span class="label">ID:</span>
+      <span class="value" th:text="${user.id}"></span>
+    </div>
+  </div>
+
+  <!-- Os Meus Anúncios -->
+  <!-- Seção que lista os anúncios do utilizador. -->
+  <section class="my-ads-section">
+    <h3>Os Meus Anúncios</h3>
+
+    <!-- Empty state: convida a criar novo anúncio quando a lista estiver vazia -->
+    <div th:if="${#lists.isEmpty(myAds)}" class="empty-state">
+      <p>Ainda não criou nenhum anúncio.</p>
+      <a href="/ads/new" class="btn-primary">Criar primeiro anúncio</a>
+    </div>
+
+    <!-- Tabela de anúncios: cada linha representa um `Ad` do utilizador -->
+    <div th:unless="${#lists.isEmpty(myAds)}" class="ads-table-wrapper">
+      <table class="ads-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Alojamento</th>
+            <th>Zona</th>
+            <th>Preço</th>
+            <th>Estado</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="ad : ${myAds}">
+            <!-- Código interno do anúncio -->
+            <td th:text="${ad.code}"></td>
+            <td>
+              <!-- Badge do tipo de anúncio -->
+              <span class="badge"
+                    th:classappend="${ad.type == T(roomrent.model.Ad.AdType).OFERTA} ? 'badge-offer' : 'badge-search'"
+                    th:text="${ad.type == T(roomrent.model.Ad.AdType).OFERTA} ? 'Oferta' : 'Procura'"></span>
+            </td>
+            <!-- Alojamento e zona exibidos como enums/strings. -->
+            <td th:text="${ad.accommodationType}"></td>
+            <td th:text="${ad.zone}"></td>
+            <td><strong th:text="${ad.price} + ' €'"></strong></td>
+            <td>
+              <!-- Estado do anúncio (Ativo/Inativo) com classes para estilo visual rápido -->
+              <span class="badge"
+                    th:classappend="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'badge-active' : 'badge-inactive'"
+                    th:text="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'Ativo' : 'Inativo'"></span>
+            </td>
+            <td class="actions-cell">
+              <!-- Ações do utilizador: rotas protegidas que validam ownership no controller -->
+              <a th:href="@{'/my/ads/' + ${ad.id} + '/messages'}" class="btn-secondary">Mensagens</a>
+              <a th:href="@{'/my/ads/' + ${ad.id} + '/payment'}" class="btn-secondary">Pagamento</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

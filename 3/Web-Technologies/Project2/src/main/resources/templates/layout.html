@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoomRent</title>
+  <!-- Carrega CSS global -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Cabeçalho do site -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title">
+      <!-- Logotipo/Título com link para a página inicial. -->
+      <h1><a href="/">RoomRent</a></h1>
+    </div>
+    
+    <!-- Navegação condicional baseada no estado de autenticação -->
+    <!-- Utiliza sec:authorize para mostrar/ocultar links. 
+         A lógica de autorização central é definida em SecurityConfig. -->
+    <nav class="main-nav" aria-label="Navegação principal">
+      <ul>
+        <!-- Links para utilizadores não autenticados -->
+        <li sec:authorize="isAnonymous()"><a href="/ads">Procurar</a></li>
+        <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+        
+        <!-- Links para utilizadores autenticados (ROLE_USER) -->
+        <!-- Nota: os endpoints (ex.: /my) também validam a ownership e roles server-side. -->
+        <li sec:authorize="hasRole('USER')"><a href="/ads">Procurar</a></li>
+        <li sec:authorize="hasRole('USER')"><a href="/ads/new">Criar</a></li>
+        <li sec:authorize="hasRole('USER')"><a href="/my">Área Pessoal</a></li>
+        <li sec:authorize="hasRole('USER')">
+          <!-- Logout via POST com token CSRF incluído. 
+           O controller de logout é configurado em SecurityConfig. -->
+          <form th:action="@{/logout}" method="post" style="margin:0; display:inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit" class="nav-btn">Logout</button>
+          </form>
+        </li>
+        
+        <!-- Links para administradores (ROLE_ADMIN) -->
+        <li sec:authorize="hasRole('ADMIN')"><a href="/ads">Procurar</a></li>
+        <li sec:authorize="hasRole('ADMIN')"><a href="/admin">Área Administrativa</a></li>
+        <li sec:authorize="hasRole('ADMIN')">
+          <!-- Logout para admin também via POST com CSRF -->
+          <form th:action="@{/logout}" method="post" style="margin:0; display:inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <button type="submit" class="nav-btn">Logout</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Conteúdo principal -->
+<!-- O layout usa `th:insert` para incluir o fragmento `content` definido nas views (ex.: home, ads, my). -->
+<main class="site-main" role="main">
+  <div th:insert="${contentTemplate} :: content"></div>
+</main>
+
+<!-- Rodapé do site -->
+<!-- A exibição do rodapé é controlada pelo modelo (atributo `showFooter`) para permitir páginas sem footer. -->
+<footer class="site-footer" th:if="${showFooter} != false">
+  <div class="footer-inner">
+    <div class="footer-section">
+      <h3>Desenvolvedores</h3>
+      <p>André Gonçalves nº58392</p>
+      <p>André Zhan nº58762</p>
+    </div>
+    <div class="footer-section">
+      <h3>Contactos</h3>
+      <p><a href="mailto:l58392@alunos.uevora.pt">l58392@alunos.uevora.pt</a></p>
+      <p><a href="mailto:l58762@alunos.uevora.pt">l58762@alunos.uevora.pt</a></p>
+    </div>
+    <div class="footer-section">
+      <h3>Com o apoio de</h3>
+      <p>
+        <a href="https://www.uevora.pt/" target="_blank" rel="noopener noreferrer">
+          <img th:src="@{/img/uni_logo.png}" src="/img/uni_logo.png" alt="Universidade de Évora" class="footer-logo" />
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

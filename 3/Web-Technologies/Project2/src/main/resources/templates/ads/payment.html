@@ -1,0 +1,38 @@
+<div th:fragment="content" class="payment-page">
+  <!-- Página de confirmação de anúncio/geração de referência MB. -->
+  <div class="card payment-card">
+    <h2>Anúncio registado com sucesso!</h2>
+
+    <div class="payment-info">
+      <div class="info-row">
+        <span class="label">Código único:</span>
+        <span class="value" th:text="${ad.code}"></span>
+      </div>
+
+      <div class="payment-section">
+        <!-- Dados MB provenientes de um serviço externo. -->
+        <h3>Dados de Pagamento Multibanco</h3>
+        <div class="info-row">
+          <span class="label">Entidade:</span>
+          <span class="value" th:text="${payment.entity}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Referência:</span>
+          <span class="value" th:text="${payment.reference}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Montante (Taxa de Publicação):</span>
+          <span class="value"><span th:text="${payment.amount}"></span> €</span>
+        </div>
+      </div>
+
+      <!-- Nota: o anúncio fica inativo até ativação pelo admin. -->
+      <div class="alert" style="margin-top: 1rem; background: #fef3c7; border-color: #fcd34d; color: #92400e;">
+        <strong>Atenção:</strong> O anúncio está <strong>inativo</strong>. Deve realizar o pagamento e aguardar ativação pelo administrador.
+      </div>
+    </div>
+
+    <!-- Botão: leva o utilizador para a Área Pessoal. -->
+    <a href="/my" class="btn-primary" style="margin-top: 1.5rem; text-align: center;">Ir para Área Pessoal</a>
+  </div>
+</div>

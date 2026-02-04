@@ -1,0 +1,65 @@
+<div th:fragment="content" class="payment-page">
+  <!-- Este fragmento exibe a informação de pagamento do anúncio.
+       Segurança: apenas o owner do anúncio (validado no controller) vê esta página.
+  -->
+  <div class="card payment-card">
+    <h2>Informação de Pagamento</h2>
+
+    <div class="payment-info">
+      <!-- Dados do Anúncio -->
+      <div class="payment-section">
+        <h3>Dados do Anúncio</h3>
+        <div class="info-row">
+          <span class="label">Código:</span>
+          <span class="value" th:text="${ad.code}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Tipo:</span>
+          <span class="value" th:text="${ad.type}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Zona:</span>
+          <span class="value" th:text="${ad.zone}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Estado:</span>
+          <span class="value">
+            <!-- Badge: representa o estado do anúncio. -->
+            <span class="badge"
+                  th:classappend="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'badge-active' : 'badge-inactive'"
+                  th:text="${ad.state == T(roomrent.model.Ad.State).ATIVO} ? 'Ativo' : 'Inativo'"></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Referência Multibanco: proveniente de PaymentRef (gerada pelo serviço). -->
+      <div class="payment-section">
+        <h3>Referência Multibanco</h3>
+        <div class="info-row">
+          <span class="label">Entidade:</span>
+          <span class="value" th:text="${payment != null ? payment.entity : '—'}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Referência:</span>
+          <span class="value" th:text="${payment != null ? payment.reference : '—'}"></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Taxa de Publicação:</span>
+          <span class="value"><span th:text="${payment != null ? payment.amount : '0.00'}"></span> €</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Criado em:</span>
+          <span class="value" th:text="${payment != null ? #temporals.format(payment.createdAt, 'dd/MM/yyyy HH:mm:ss') : '—'}"></span>
+        </div>
+      </div>
+
+      <!-- Alertas de estado: instruções diferentes para anúncios inativos/ativos -->
+      <div class="alert" style="margin-top: 1rem; background: #fef3c7; border-color: #fcd34d; color: #92400e;" th:if="${ad.state == T(roomrent.model.Ad.State).INATIVO}">
+        <strong>Atenção:</strong> O anúncio está <strong>inativo</strong>. Se já efetuou o pagamento, aguarde ativação pelo administrador.
+      </div>
+      <div class="alert success" style="margin-top: 1rem;" th:if="${ad.state == T(roomrent.model.Ad.State).ATIVO}">
+        O anúncio está <strong>ativo</strong> e visível para outros utilizadores.
+      </div>
+    </div>
+  </div>
+</div>

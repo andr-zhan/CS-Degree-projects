@@ -1,0 +1,1181 @@
+/* ======================================================================================
+   ROOM RENT - STYLESHEET
+   
+   Organização:
+   1. Variáveis de Tema (cores, tamanhos, shadows)
+   2. Reset e Base (estilos globais)
+   3. Componentes Reutilizáveis (botões, cards, badges, etc)
+   4. Layout Principal (header, main, footer)
+   5. Páginas Específicas (login, ads, admin, etc)
+   6. Responsividade
+   
+   Convenções CSS:
+   - Cores: variáveis CSS no :root para facilitar manutenção
+   - BEM-like: classes descritivas e específicas (ex: .ad-card, .btn-primary)
+   - Flexbox/Grid: utilizado para layouts modernos e responsivos
+   - Transitions: suaves em 0.2s para melhor UX
+   ====================================================================================== */
+
+/* ======================================================================================
+   1. VARIÁVEIS DE TEMA
+   
+   Definição centralizada de cores, espaçamentos, shadows e tamanhos usados em todo
+   o stylesheet.
+   ====================================================================================== */
+:root {
+    /* Paleta de cores principais */
+    --accent: #2563eb;                    /* Azul primário (botões, links, destaque) */
+    --accent-dark: #1e40af;               /* Azul escuro (hover, backgrounds) */
+    --bg: #ffffff;                        /* Fundo de cards e elementos */
+    --bg-light: #f9fafb;                  /* Fundo alternativo e listras */
+    --muted: #6b7280;                     /* Cor para texto secundário/desativado */
+    --border: #e5e7eb;                    /* Bordas de elementos */
+    
+    /* Dimensões e espaçamento */
+    --max-width: 1200px;                  /* Largura máxima do conteúdo */
+    --rounded: 8px;                       /* Raio de bordas padrão */
+    
+    /* Sombras (aumentam profundidade visual) */
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ======================================================================================
+   2. RESET E BASE
+   
+   Estilos globais para garantir consistência em todos os navegadores.
+   ====================================================================================== */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-light);
+    font-family: system-ui, -apple-system, Arial, sans-serif;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ======================================================================================
+   3. COMPONENTES REUTILIZÁVEIS
+   
+   Estilos genéricos para botões, cards, badges, alerts e outros componentes
+   que são usados em múltiplas páginas.
+   ====================================================================================== */
+
+/* --- Botões --- */
+.btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    border: none;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    background: #3b82f6;
+    color: #fff;
+}
+
+/* Botão secundário: outline com cor primária */
+.btn-secondary {
+    padding: 0.4rem 0.8rem;
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Botão de aviso (laranja) - cuidado/atenção */
+.btn-warning {
+    padding: 0.4rem 0.8rem;
+    background: #f59e0b;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-warning:hover {
+    background: #d97706;
+}
+
+/* Botão de perigo/risco (vermelho) - ações destrutivas */
+.btn-danger {
+    padding: 0.4rem 0.8rem;
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+}
+
+/* Botões em tabelas/áreas comprimidas */
+.actions-cell .btn-primary,
+.actions-cell .btn-warning,
+.actions-cell .btn-danger {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* --- Cards --- */
+.card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+/* --- Badges/Labels --- */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Badge para anúncios do tipo oferta (azul) */
+.badge-offer {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* Badge para anúncios do tipo procura (vermelho) */
+.badge-search {
+    background: #fce7f3;
+    color: #9f1239;
+}
+
+/* Badge para estado ativo (verde) */
+.badge-active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* Badge para estado inativo (vermelho claro) */
+.badge-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* --- Alertas --- */
+.alert {
+    padding: 0.75rem 1rem;
+    border-radius: var(--rounded);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.alert.success {
+    background: #ecfdf3;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.alert.error {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecdd3;
+}
+
+/* --- Chips (pequenas tags/labels) --- */
+.chip {
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.chip-strong {
+    background: #fff;
+    color: var(--accent-dark);
+    border-color: #fff;
+}
+
+.chip-muted {
+    opacity: 0.85;
+}
+
+/* --- Utilitários --- */
+.muted {
+    color: var(--muted);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: var(--bg-light);
+    border-radius: var(--rounded);
+    border: 2px dashed var(--border);
+}
+
+.empty-state p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ======================================================================================
+   4. LAYOUT PRINCIPAL
+   
+   Estrutura geral da página: header, conteúdo principal, rodapé.
+   ====================================================================================== */
+
+/* --- Cabeçalho/Header --- */
+.site-header {
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    padding: 1rem 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.header-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.site-title h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.02em;
+}
+
+/* Logo e título como link (sem decoração) */
+.site-title a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* --- Navegação Principal --- */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.main-nav li {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav a,
+.main-nav .nav-btn {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    transition: background 0.2s;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.main-nav a:hover,
+.main-nav a:focus,
+.main-nav .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+}
+
+/* --- Conteúdo Principal --- */
+.site-main {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--bg);
+    border-radius: var(--rounded);
+    box-shadow: var(--box-shadow-lg);
+    flex: 1 0 auto;
+}
+
+/* --- Rodapé/Footer --- */
+.site-footer {
+    background: #111827;
+    color: #e5e7eb;
+    padding: 2rem 1.5rem;
+    margin-top: auto;
+}
+
+.footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.footer-section p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-section a {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.footer-section img,
+.footer-logo {
+    max-width: 140px;
+    height: auto;
+    display: inline-block;
+}
+
+/* ======================================================================================
+   5. PÁGINAS ESPECÍFICAS
+   
+   Estilos dedicados a páginas/seções específicas da aplicação.
+   ====================================================================================== */
+
+/* --- Formulários Genéricos --- */
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+select,
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+button,
+input[type='submit'] {
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:not(.btn-primary):hover,
+input[type='submit']:not(.btn-primary):hover {
+    background: var(--accent-dark);
+}
+
+/* --- Página Principal (Home) --- */
+
+/* Hero section: grande banner no topo da home */
+.hero-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    border-radius: var(--rounded);
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.02em;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Showcase: grid com dois tipos de anúncios (Ofertas e Procuras) */
+.ads-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.ads-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-dark);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.5rem;
+}
+
+.ads-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Card individual de anúncio (home ou listas) */
+.ad-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    padding: 1.25rem;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ad-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.ad-card-body {
+    margin-bottom: 1rem;
+}
+
+.ad-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #111;
+}
+
+.ad-location {
+    color: var(--muted);
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+.ad-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    margin: 0.5rem 0 0 0;
+}
+
+.ad-card-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-details {
+    padding: 0.5rem 1rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-details:hover {
+    background: var(--accent-dark);
+    text-decoration: none;
+}
+
+/* --- Página de Detalhes de Anúncio (/ads/{id}) --- */
+
+.ad-detail-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Hero com info do anúncio (título, tipo, preço) */
+.ad-hero {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: var(--rounded);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.ad-hero-top {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.ad-hero-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.ad-hero-main h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.35rem;
+}
+
+.ad-hero-main .ad-location {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* Tag de preço em destaque */
+.ad-price-tag {
+    background: #fff;
+    color: var(--accent-dark);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--rounded);
+    box-shadow: var(--box-shadow);
+    text-align: right;
+    min-width: 140px;
+}
+
+.ad-price-tag .price-value {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.ad-price-tag small {
+    font-weight: 600;
+}
+
+/* Grid de conteúdo: detalhes + sidebar */
+.ad-content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+.ad-main-card,
+.ad-side-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+.ad-main-card h3,
+.ad-side-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--accent-dark);
+}
+
+.ad-description {
+    margin: 0 0 1rem 0;
+    color: #1f2937;
+}
+
+/* Grid de atributos (tipo, alojamento, zona, etc) */
+.ad-attributes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.attr {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    background: var(--bg-light);
+}
+
+.label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.side-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Formulário de mensagens dentro do card de detalhes */
+.message-form label {
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    display: block;
+}
+
+.message-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--rounded);
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 140px;
+}
+
+.message-form .btn-primary {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* --- Página de Lista de Anúncios (/ads) --- */
+
+.ads-list-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.list-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+/* Barra de filtros */
+.filters-bar {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+.filters-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.filters-row .filter label {
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.filters-row .actions {
+    display: flex;
+    align-items: end;
+}
+
+.filters-row .actions .btn-primary {
+    width: 100%;
+}
+
+.ads-grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.ad-pill-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Paginação */
+.pagination {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.page-link {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: #111;
+    background: #fff;
+}
+
+.page-link.active,
+.page-link:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+/* --- Página de Login --- */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+.login-card h2 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-dark);
+}
+
+.login-card form {
+    margin-top: 0.5rem;
+}
+
+.login-card .btn-primary {
+    width: 100%;
+}
+
+.register-hint {
+    margin-top: 0.75rem;
+    color: var(--muted);
+}
+
+.register-hint a {
+    color: var(--accent);
+}
+
+/* --- Página de Criação de Anúncio --- */
+
+.ad-form-page {
+    display: flex;
+    justify-content: center;
+}
+
+.ad-form-card {
+    width: 100%;
+    max-width: 700px;
+}
+
+.ad-form-card h2 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-dark);
+}
+
+.ad-form-card form {
+    margin-top: 0.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.ad-form-card .btn-primary {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* --- Página dos Dados de Pagamento --- */
+
+.payment-page {
+    display: flex;
+    justify-content: center;
+}
+
+.payment-card {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+}
+
+.payment-card h2 {
+    margin: 0 0 1.5rem 0;
+    color: var(--accent-dark);
+}
+
+.payment-info {
+    text-align: left;
+}
+
+.payment-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: var(--rounded);
+    border: 1px solid var(--border);
+}
+
+.payment-section h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-dark);
+    font-size: 1.1rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-row .label {
+    color: var(--muted);
+    font-weight: 600;
+}
+
+.info-row .value {
+    font-weight: 700;
+    color: #111;
+}
+
+.payment-card .btn-primary {
+    width: 100%;
+}
+
+/* --- Página de Área Pessoal (/my) --- */
+
+.my-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.my-dashboard h2 {
+    margin: 0 0 1rem 0;
+    color: var(--accent-dark);
+}
+
+.user-info-card {
+    max-width: 500px;
+}
+
+.user-info-card h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-dark);
+    font-size: 1.1rem;
+}
+
+.my-ads-section h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--accent-dark);
+}
+
+/* --- Tabela de Anúncios (admin, user) --- */
+
+.ads-table-wrapper {
+    overflow-x: auto;
+}
+
+.ads-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--rounded);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.ads-table thead {
+    background: var(--accent);
+    color: #fff;
+}
+
+.ads-table th,
+.ads-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.ads-table tbody tr {
+    border-bottom: 1px solid var(--border);
+}
+
+.ads-table tbody tr:hover {
+    background: var(--bg-light);
+}
+
+.ads-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Célula com múltiplas ações (botões) */
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* --- Dashboard Admin --- */
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-dashboard h2,
+.admin-dashboard h3 {
+    color: var(--accent-dark);
+}
+
+.user-approve-card h3 {
+    margin: 0 0 0.75rem 0;
+}
+
+.manage-ads .filters-bar {
+    margin-bottom: 0.5rem;
+}
+
+/* --- Página de Mensagens (anúncio) --- */
+
+.messages-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ad-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.ad-summary .summary-row:last-child {
+    border-bottom: none;
+}
+
+.messages-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.message-item {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--rounded);
+    background: var(--bg-light);
+}
+
+.message-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.35rem;
+}
+
+.message-meta .from {
+    font-weight: 700;
+    color: var(--accent-dark);
+}
+
+.message-meta .time {
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.message-content {
+    color: #111;
+}
+
+/* ======================================================================================
+   6. RESPONSIVIDADE
+   
+   Media queries para garantir que o design funcione bem em todos os tamanhos de tela.
+   ====================================================================================== */
+
+@media (max-width: 900px) {
+    /* Grid de detalhes muda para coluna única */
+    .ad-content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hero em modo coluna */
+    .ad-hero-main {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ad-price-tag {
+        align-self: flex-start;
+    }
+
+    /* Showcase muda para coluna única (home) */
+    .ads-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    /* Filtros em grid responsivo */
+    .filters-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tabela: reduz padding e font-size em telas pequenas */
+    .ads-table {
+        font-size: 0.9rem;
+    }
+
+    .ads-table th,
+    .ads-table td {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header em modo coluna (título em cima, nav em baixo) */
+    .header-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .site-title {
+        text-align: center;
+    }
+
+    .main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Formulários: uma coluna */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hero subtitle menor em mobile */
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    /* Botões e inputs em telas pequenas: ocupam a largura inteira */
+    .btn-primary {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Diminuir tamanhos gerais para mobile pequeno */
+    .site-main {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .ad-card {
+        padding: 1rem;
+    }
+
+    /* Grid de filtros sempre em coluna */
+    .filters-row {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tabelas: scroll horizontal em mobile muito pequeno */
+    .ads-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

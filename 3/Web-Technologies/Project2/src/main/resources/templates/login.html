@@ -1,0 +1,30 @@
+<div th:fragment="content" class="login-page">
+  <!-- Formulário de login -->
+  <div class="card login-card">
+    <h2>Login</h2>
+
+    <!-- Mensagens de feedback: `param.error` é definido pelo Spring Security em falha de autenticação -->
+    <div th:if="${param.error}">
+      <div class="alert error">Credenciais inválidas. Tenta novamente.</div>
+    </div>
+    <!-- Mensagem de sucesso informativa passada pelo controller (após registo) -->
+    <div th:if="${message}">
+      <div class="alert success" th:text="${message}"></div>
+    </div>
+
+    <!-- Form de login: inclui token CSRF -->
+    <form method="post" th:action="@{/login}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required>
+
+      <button type="submit" class="btn-primary">Entrar</button>
+    </form>
+
+    <p class="register-hint">Ainda não tens conta? <a href="/register">Criar conta</a></p>
+  </div>
+</div>

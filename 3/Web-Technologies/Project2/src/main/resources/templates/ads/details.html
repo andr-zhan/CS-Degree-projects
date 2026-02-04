@@ -1,0 +1,98 @@
+<div th:fragment="content" class="ad-detail-page" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+  <!-- Fragmento: página de detalhes do anúncio. Exibe os atributos e painel de mensagens. -->
+
+  <!-- Destaque do anúncio -->
+  <section class="ad-hero">
+    <div class="ad-hero-top">
+      <!-- Chips: metadados do anúncio (tipo, alojamento, preferência, data, estado). -->
+      <span class="chip chip-strong" th:text="${ad.type}"></span>
+      <span class="chip" th:text="${ad.accommodationType}"></span>
+      <span class="chip" th:text="${ad.genderPreference}"></span>
+      <span class="chip" th:text="${#temporals.format(ad.createdAt, 'dd MMM yyyy')}"></span>
+      <span class="chip chip-muted" th:text="${ad.state}"></span>
+    </div>
+    <div class="ad-hero-main">
+      <div>
+        <h2 th:text="${ad.advertiserName}"></h2>
+        <p class="ad-location" th:text="${ad.zone}"></p>
+      </div>
+      <div class="ad-price-tag">
+        <span class="price-value" th:text="${ad.price}"></span>
+        <small>€/mês</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conteúdo do anúncio -->
+  <section class="ad-content-grid">
+    <div class="ad-main-card">
+      <h3>Descrição</h3>
+      <p class="ad-description" th:text="${ad.details}"></p>
+
+      <!-- Atributos -->
+      <div class="ad-attributes-grid">
+        <div class="attr">
+          <span class="label">Tipo</span>
+          <strong th:text="${ad.type}"></strong>
+        </div>
+        <div class="attr">
+          <span class="label">Alojamento</span>
+          <strong th:text="${ad.accommodationType}"></strong>
+        </div>
+        <div class="attr">
+          <span class="label">Zona</span>
+          <strong th:text="${ad.zone}"></strong>
+        </div>
+        <div class="attr">
+          <span class="label">Preferência</span>
+          <strong th:text="${ad.genderPreference}"></strong>
+        </div>
+        <div class="attr">
+          <span class="label">Contacto</span>
+          <strong th:text="${ad.contact}"></strong>
+        </div>
+        <div class="attr">
+          <span class="label">Código</span>
+          <strong th:text="${ad.code}"></strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Painel de mensagens -->
+    <aside class="ad-side-card">
+      <div class="side-block">
+        <h4>Fale com o anunciante</h4>
+        <p class="muted">Mensagens rápidas via chat interno.</p>
+
+        <div th:if="${message}" class="alert success" th:text="${message}"></div>
+        <div th:if="${error}" class="alert error" th:text="${error}"></div>
+
+        <div sec:authorize="isAuthenticated()">
+          <!-- Envio de mensagens: apenas utilizadores autenticados (exclui ADMIN e o proprietário do anúncio).
+               Form contém token CSRF e validação mínima no cliente. -->
+          <div th:if="${#authorization.expression('!hasRole(''ADMIN'')') and ad.owner.username != #authentication.name}" class="message-panel">
+            <form method="post" th:action="@{'/messages/send/' + ${ad.id}}" class="message-form">
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+              <label for="msg">Mensagem</label>
+              <textarea id="msg" name="content" rows="5" required minlength="5" maxlength="2000" placeholder="Escreva a sua mensagem"></textarea>
+              <button type="submit" class="btn-primary">Enviar mensagem</button>
+            </form>
+          </div>
+
+          <!-- Dono do anúncio: aqui mostramos uma mensagem informativa; não permitimos envio para o próprio. -->
+          <div th:if="${ad.owner.username == #authentication.name}" class="muted">
+            <p>Este é o seu anúncio.</p>
+          </div>
+        </div>
+
+        <!-- Anónimos: encorajar login; o formulário de contacto não deve ser visível a utilizadores não autenticados. -->
+        <div sec:authorize="isAnonymous()" class="muted">
+          <p>Inicie sessão para contactar o anunciante.</p>
+          <a class="btn-primary" href="/login">Entrar</a>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+</div>
